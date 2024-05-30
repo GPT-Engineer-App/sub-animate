@@ -9,12 +9,17 @@ const Index = () => {
   const [animation, setAnimation] = useState("none");
   const [fontStyle, setFontStyle] = useState("Arial");
 
-  const handleGenerateSubtitles = () => {
-    // Placeholder for subtitle generation logic
-    setSubtitles([
+  const generateDummySubtitles = () => {
+    return [
       { time: "00:00:01", text: "Welcome to the video!" },
       { time: "00:00:05", text: "This is a subtitle generator app." },
-    ]);
+      { time: "00:00:10", text: "Enjoy the subtitles!" },
+    ];
+  };
+
+  const handleGenerateSubtitles = () => {
+    const generatedSubtitles = generateDummySubtitles();
+    setSubtitles(generatedSubtitles);
   };
 
   const handlePlayPause = () => {
