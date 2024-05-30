@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Container, VStack, Text, Button, Input, Box, Select, IconButton, HStack } from "@chakra-ui/react";
+import { Container, VStack, Text, Button, Box, Select, IconButton, HStack, Input } from "@chakra-ui/react";
 import { FaPlay, FaPause, FaStop } from "react-icons/fa";
 
 const Index = () => {
-  const [videoUrl, setVideoUrl] = useState("");
+  const [videoFile, setVideoFile] = useState(null);
   const [subtitles, setSubtitles] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [animation, setAnimation] = useState("none");
@@ -30,11 +30,11 @@ const Index = () => {
     <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <VStack spacing={4} width="100%">
         <Text fontSize="2xl">Subtitle Generator App</Text>
-        <Input placeholder="Enter video URL" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} />
+        <Input type="file" accept="video/*" onChange={(e) => setVideoFile(e.target.files[0])} />
         <Button onClick={handleGenerateSubtitles}>Generate Subtitles</Button>
         <Box width="100%" height="400px" bg="gray.200" display="flex" justifyContent="center" alignItems="center">
-          {videoUrl ? (
-            <video src={videoUrl} width="100%" controls>
+          {videoFile ? (
+            <video src={URL.createObjectURL(videoFile)} width="100%" controls>
               Your browser does not support the video tag.
             </video>
           ) : (
